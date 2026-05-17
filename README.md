@@ -51,25 +51,31 @@ df = pd.read_csv("Data.csv")
 df
 ```
 <img width="1402" height="566" alt="image" src="https://github.com/user-attachments/assets/674a443f-b436-428d-a1e1-67d28af218cb" />
+
 ```
 print(df.head())
 ```
 <img width="1394" height="191" alt="image" src="https://github.com/user-attachments/assets/c49e7b3a-0b2f-4286-97f7-a8d25e65b127" />
+
 ```
 print(df.tail())
 ```
+
 <img width="1377" height="199" alt="image" src="https://github.com/user-attachments/assets/38276542-fcb5-4da6-b058-49bfec860295" />
 ```
 print(df.info())
 ```
+
 <img width="1376" height="385" alt="image" src="https://github.com/user-attachments/assets/aa09c37b-a52a-4b39-9d93-f4f0e378cc76" />
 ```
 print(df.describe())
 ```
+
 <img width="1379" height="263" alt="image" src="https://github.com/user-attachments/assets/09f0ef0f-fb8a-4451-9a1c-34dfe80c873a" />
 ```
 print("Missing values:\n", df.isnull().sum())
 ```
+
 <img width="1375" height="253" alt="image" src="https://github.com/user-attachments/assets/4454cf6a-e3d9-4594-ab5c-b33a1add4d5e" />
 ```
 from sklearn.preprocessing import OrdinalEncoder,LabelEncoder
@@ -77,11 +83,18 @@ climate = ['Cold','Warm','Hot','Very Hot']
 ele = OrdinalEncoder(categories=[climate])
 ele.fit_transform(df[["Ord_1"]])
 ```
+
 <img width="1380" height="335" alt="image" src="https://github.com/user-attachments/assets/413e9621-2269-42a5-aa61-e5ba6dff1d92" />
 ```
 df['bo2'] = ele.fit_transform(df[["Ord_1"]])
 df
 ```
+<img width="1380" height="437" alt="image" src="https://github.com/user-attachments/assets/2be96fc1-cbce-443b-9199-699448dbdba0" />
+
+```
+
+
+
 
 # RESULT:
        # INCLUDE YOUR RESULT HERE
