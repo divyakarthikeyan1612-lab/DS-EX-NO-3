@@ -98,6 +98,191 @@ df
 <img width="1380" height="437" alt="image" src="https://github.com/user-attachments/assets/2be96fc1-cbce-443b-9199-699448dbdba0" />
 
 ```
+le = LabelEncoder()
+df2 = df.copy()
+df2['Ord_2'] = le.fit_transform(df2['Ord_2'])
+df2
+```
+
+
+<img width="1375" height="493" alt="image" src="https://github.com/user-attachments/assets/4b99257b-733c-47c3-aef4-9f573db5c79e" />
+
+```
+df2['Ord_2'] = le.fit_transform(df2['Ord_2'])
+df2
+```
+
+
+<img width="1384" height="455" alt="image" src="https://github.com/user-attachments/assets/bb9c9be8-2158-4436-ae0e-17960fd7e360" />
+
+
+```
+from sklearn.preprocessing import OneHotEncoder
+ohe = OneHotEncoder()
+df3 = df.copy()
+enc = pd.DataFrame(ohe.fit_transform(df2[["City"]]))
+df2 = pd.concat([enc,df3],axis = 1)
+df2
+```
+
+
+
+<img width="1384" height="538" alt="image" src="https://github.com/user-attachments/assets/60944394-db90-47f5-b66b-b355e9307327" />
+
+
+```
+pd.get_dummies(df,columns=['City'])
+```
+
+
+<img width="1380" height="415" alt="image" src="https://github.com/user-attachments/assets/0f983331-3b82-4497-b8a9-d248ffbd2a50" />
+
+```
+from category_encoders import BinaryEncoder
+import pandas as pd
+df = pd.read_csv('data.csv')
+df
+```
+
+
+<img width="1378" height="484" alt="image" src="https://github.com/user-attachments/assets/9b2da12b-5e18-44e8-89d5-103a7ae02843" />
+
+```
+be = BinaryEncoder()
+nd = be.fit_transform(df['Ord_2'])
+df
+```
+
+
+<img width="1384" height="462" alt="image" src="https://github.com/user-attachments/assets/5ea25630-bd96-4ec2-905a-86eb941eb0dc" />
+
+```
+from category_encoders import TargetEncoder
+te = TargetEncoder()
+CC = df.copy()
+new = te.fit_transform(CC["City"],y=CC["Target"])
+CC = pd.concat([CC,new],axis = 1)
+CC
+```
+
+
+<img width="1387" height="522" alt="image" src="https://github.com/user-attachments/assets/1dceaf18-da73-4df0-a987-99235aa7010b" />
+
+
+```
+import numpy as np
+from scipy import stats
+df = pd.read_csv('Data_to_Transform.csv')
+df
+```
+
+
+
+<img width="1390" height="551" alt="image" src="https://github.com/user-attachments/assets/708e8ad3-e019-46a7-affa-d4bc3676e582" />
+
+
+```
+df.skew()
+```
+
+
+<img width="1381" height="176" alt="image" src="https://github.com/user-attachments/assets/c93d7e73-521a-4e4b-9d60-32aa82957df0" />
+
+
+```
+np.log(df["Highly Positive Skew"])
+```
+
+
+<img width="1384" height="323" alt="image" src="https://github.com/user-attachments/assets/58970fd1-a06e-48ad-a711-85e0797b09d2" />
+
+
+```
+np.reciprocal(df["Moderate Positive Skew"])
+```
+
+
+<img width="1381" height="325" alt="image" src="https://github.com/user-attachments/assets/9bb1a0f6-26a7-4113-8a45-4b41b0d5f4e0" />
+
+
+```
+np.sqrt(df["Highly Positive Skew"])
+```
+
+
+<img width="1385" height="320" alt="image" src="https://github.com/user-attachments/assets/0f5426f7-d4fb-4183-ae15-01adc38ce41d" />
+
+
+```
+np.square(df["Highly Positive Skew"])
+```
+
+
+<img width="1365" height="325" alt="image" src="https://github.com/user-attachments/assets/dc3f4c24-76ed-439b-a880-f3027c2c66b2" />
+
+
+```
+df["Highly Positive Skew_boxcox"], parameters = stats.boxcox(df["Highly Positive Skew"])
+df
+```
+
+<img width="1389" height="520" alt="image" src="https://github.com/user-attachments/assets/6246115d-c816-4c9e-bd53-b77b6aedeacf" />
+
+
+```
+df["Moderate Negative Skew_yeojohnson"], parameters = stats.yeojohnson(df["Moderate Negative Skew"])
+df
+```
+
+
+<img width="1383" height="539" alt="image" src="https://github.com/user-attachments/assets/e800d4d6-41f4-40f2-922c-ff74c9d440b4" />
+
+
+```
+from sklearn.preprocessing import QuantileTransformer
+qt = QuantileTransformer(output_distribution = 'normal')
+df["Moderate Negative Skew_1"] = qt.fit_transform(df[["Moderate Negative Skew"]])
+df
+```
+
+<img width="1383" height="564" alt="image" src="https://github.com/user-attachments/assets/23db7d78-084a-47e6-9805-a455db0c9f72" />
+
+```
+import matplotlib.pyplot as plt
+import seaborn as sns
+import statsmodels.api as sm
+import scipy.stats as stats
+sm.qqplot(df["Moderate Negative Skew"],line = '45')
+plt.show()
+```
+
+
+<img width="1387" height="703" alt="image" src="https://github.com/user-attachments/assets/a7d75e89-96c8-4291-bff8-b47be18ad9de" />
+
+
+```
+sm.qqplot(df["Moderate Negative Skew_1"],line = '45')
+plt.show()
+```
+
+
+<img width="1378" height="615" alt="image" src="https://github.com/user-attachments/assets/ced426d5-049a-4e40-a195-57c9c7417280" />
+
+
+```
+df["Highly Negative Skew_1"] = qt.fit_transform(df[["Highly Negative Skew"]])
+sm.qqplot(df["Highly Negative Skew"],line = '45')
+plt.show()
+```
+
+
+<img width="1384" height="646" alt="image" src="https://github.com/user-attachments/assets/2cf8203a-e4a2-4cf5-8f8b-4ea9fc2bdacb" />
+
+
+```
+sm.qqplot(np.reciprocal(df["Moderate Negative Skew_1"]),line = '45')
+plt.show()
+```
 
 
 
