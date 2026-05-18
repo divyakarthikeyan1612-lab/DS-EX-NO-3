@@ -284,7 +284,46 @@ sm.qqplot(np.reciprocal(df["Moderate Negative Skew_1"]),line = '45')
 plt.show()
 ```
 
+<img width="1328" height="626" alt="image" src="https://github.com/user-attachments/assets/5248df48-3f19-47ff-a34b-55046216a0cb" />
 
+
+```
+sm.qqplot(df["Highly Negative Skew_1"],line = '45')
+plt.show()
+```
+
+<img width="1381" height="621" alt="image" src="https://github.com/user-attachments/assets/474934a2-2a3c-4c8e-a70b-a9089f1fb955" />
+
+
+```
+sm.qqplot(np.abs(df["Highly Negative Skew_1"]),line = '45')
+plt.show()
+```
+
+<img width="1394" height="614" alt="image" src="https://github.com/user-attachments/assets/9951d500-d4e2-4fb7-a1fd-b8e623647a4a" />
+
+
+```
+sm.qqplot(np.log(df["Highly Negative Skew_1"]),line = '45')
+plt.show()
+```
+
+<img width="1362" height="693" alt="image" src="https://github.com/user-attachments/assets/a699ce2d-814d-4b37-b5bd-412956d86256" />
+
+
+```
+sm.qqplot(np.sqrt(df["Moderate Negative Skew_1"]),line='45')
+plt.show()
+```
+
+<img width="1374" height="681" alt="image" src="https://github.com/user-attachments/assets/d733b748-3bd0-44be-aa44-b776cbd5d315" />
+
+
+```
+pd.concat([CC,new],axis = 1)
+```
+
+<img width="1386" height="416" alt="image" src="https://github.com/user-attachments/assets/30ab4914-64c7-41e5-a5c6-e2879b4cdc60" />
 
 
 # RESULT:
